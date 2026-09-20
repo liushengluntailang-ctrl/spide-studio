@@ -1,32 +1,4 @@
 #pragma once
-
 #include <QMainWindow>
-
-class AIChat;
-class Editor;
-class Explorer;
-class SPIDEProvider;
-class Terminal;
-
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
-public:
-    explicit MainWindow(QWidget *parent = nullptr);
-
-private slots:
-    void openProject();
-    void showSettings();
-    void updateAIContext();
-
-private:
-    void setProjectPath(const QString &path);
-    void applySettings();
-
-    Explorer *explorer;
-    Editor *editor;
-    Terminal *terminal;
-    AIChat *aiChat;
-    SPIDEProvider *spide;
-    QString projectPath;
-};
+class Explorer;class QTabWidget;class AIChat;class Terminal;class QLabel;class QToolButton;
+class MainWindow:public QMainWindow{Q_OBJECT public:explicit MainWindow(QWidget*p=nullptr);private:Explorer*e;QTabWidget*t;AIChat*a;Terminal*term;QToolButton*ai;void style();};

@@ -1,82 +1,15 @@
 #include "AIChat.h"
-#include "ai/IAIProvider.h"
-
-#include <QHBoxLayout>
-#include <QLineEdit>
-#include <QPlainTextEdit>
-#include <QPushButton>
 #include <QVBoxLayout>
-
-AIChat::AIChat(QWidget *parent)
-    : QWidget(parent),
-      messages(new QPlainTextEdit(this)),
-      input(new QLineEdit(this))
-{
-    messages->setReadOnly(true);
-    messages->setPlaceholderText("SPIDE AI conversation");
-
-    input->setPlaceholderText("Ask SPIDE AI...");
-
-    auto *send = new QPushButton("Send");
-    auto *stop = new QPushButton("Stop");
-
-    auto *controls = new QHBoxLayout;
-    controls->addWidget(input);
-    controls->addWidget(send);
-    controls->addWidget(stop);
-
-    auto *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(6, 6, 6, 6);
-    layout->addWidget(messages);
-    layout->addLayout(controls);
-
-    connect(send, &QPushButton::clicked, this, &AIChat::sendMessage);
-    connect(input, &QLineEdit::returnPressed, this, &AIChat::sendMessage);
-    connect(stop, &QPushButton::clicked, this, [this] {
-        if (provider) {
-            provider->cancelRequest();
-            messages->appendPlainText("[Request stopped]");
-        }
-    });
-}
-
-void AIChat::setProvider(IAIProvider *value)
-{
-    provider = value;
-    if (!provider) return;
-
-    connect(provider, &IAIProvider::responseReady, this,
-            [this](const QString &response) {
-                messages->appendPlainText("SPIDE AI:\n" + response);
-            });
-
-    connect(provider, &IAIProvider::errorOccurred, this,
-            [this](const QString &error) {
-                messages->appendPlainText("SPIDE AI error: " + error);
-            });
-}
-
-void AIChat::setContext(const QString &path, const QString &text, const QString &selected)
-{
-    filePath = path;
-    contents = text;
-    selection = selected;
-}
-
-void AIChat::sendMessage()
-{
-    const QString message = input->text().trimmed();
-    if (message.isEmpty() || !provider) return;
-
-    messages->appendPlainText("You:\n" + message);
-    input->clear();
-
-    QString context;
-
-    if (!filePath.isEmpty()) {
-        context = QString("File: %1\n%2")
-                      .arg(filePath, selection.isEmpty() ? contents : selection);
-    }
-
-    provider->sendMessage(message, context);
-}
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QTextEdit>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QUrl>
+AIChat::AIChat(QWidget*p):QWidget(p){n=new QNetworkAccessManager(this);auto*l=new QVBoxLayout(this);l->setContentsMargins(14,14,14,14);auto*t=new QLabel("AI CHAT");t->setObjectName("panelTitle");l->addWidget(t);h=new QTextEdit;h->setReadOnly(true);l->addWidget(h);auto*r=new QHBoxLayout;i=new QLineEdit;i->setPlaceholderText("Ask Spide...");b=new QPushButton("Send");b->setObjectName("primaryButton");r->addWidget(i);r->addWidget(b);l->addLayout(r);connect(b,&QPushButton::clicked,this,&AIChat::send);connect(i,&QLineEdit::returnPressed,this,&AIChat::send);}
+void AIChat::send(){auto p=i->text().trimmed();if(p.isEmpty())return;h->append("<b>You</b><br>"+p.toHtmlEscaped()+"<br>");i->clear();QNetworkRequest q(QUrl("http://127.0.0.1:8000/generate"));q.setHeader(QNetworkRequest::ContentTypeHeader,"application/json");QJsonObject o{{"prompt",p},{"engine","speed03"}};auto*r=n->post(q,QJsonDocument(o).toJson());connect(r,&QNetworkReply::finished,this,[this,r](){if(r->error()!=QNetworkReply::NoError)h->append("<b>Spide</b><br>Server unavailable.<br>");else{auto o=QJsonDocument::fromJson(r->readAll()).object();h->append("<b>Spide</b><br>"+o.value("response").toString().toHtmlEscaped()+"<br>");}r->deleteLater();});}

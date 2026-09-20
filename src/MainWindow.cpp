@@ -1,204 +1,31 @@
 #include "MainWindow.h"
-#include "AIChat.h"
-#include "Editor.h"
 #include "Explorer.h"
-#include "Settings.h"
+#include "Editor.h"
+#include "AIChat.h"
 #include "Terminal.h"
-#include "ai/SPIDEProvider.h"
-
 #include <QApplication>
-#include <QDir>
-#include <QFileDialog>
-#include <QFileInfo>
-#include <QPlainTextEdit>
-#include <QSettings>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QToolButton>
+#include <QTabWidget>
 #include <QSplitter>
 #include <QStatusBar>
-#include <QTabWidget>
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-      explorer(new Explorer(this)),
-      editor(new Editor(this)),
-      terminal(new Terminal(this)),
-      aiChat(new AIChat(this)),
-      spide(new SPIDEProvider(this))
-{
-    setWindowTitle("SPIDE Studio");
-    resize(1440, 900);
-
-    auto *mainSplitter = new QSplitter(Qt::Horizontal);
-    mainSplitter->addWidget(explorer);
-    mainSplitter->addWidget(editor);
-    mainSplitter->addWidget(aiChat);
-    mainSplitter->setStretchFactor(1, 1);
-    mainSplitter->setSizes({240, 760, 360});
-
-    auto *bottom = new QTabWidget;
-    bottom->addTab(terminal, "Terminal");
-    bottom->addTab(new QPlainTextEdit("Problems will appear here."), "Problems");
-    bottom->addTab(new QPlainTextEdit("Build and application output will appear here."), "Output");
-
-    auto *vertical = new QSplitter(Qt::Vertical);
-    vertical->addWidget(mainSplitter);
-    vertical->addWidget(bottom);
-    vertical->setStretchFactor(0, 1);
-    vertical->setSizes({680, 220});
-
-    setCentralWidget(vertical);
-
-    auto *fileMenu = menuBar()->addMenu("File");
-    fileMenu->addAction(
-        "Open Project...",
-        this,
-        &MainWindow::openProject,
-        QKeySequence("Ctrl+Shift+O")
-    );
-
-    fileMenu->addAction(
-        "Open File...",
-        this,
-        [this] {
-            const QString path =
-                QFileDialog::getOpenFileName(this, "Open File", projectPath);
-            if (!path.isEmpty())
-                editor->openFile(path);
-        },
-        QKeySequence::Open
-    );
-
-    fileMenu->addAction(
-        "Save",
-        editor,
-        &Editor::saveCurrent,
-        QKeySequence::Save
-    );
-
-    fileMenu->addAction(
-        "Save As...",
-        editor,
-        &Editor::saveCurrentAs
-    );
-
-    fileMenu->addSeparator();
-    fileMenu->addAction("Quit", qApp, &QApplication::quit, QKeySequence::Quit);
-
-    auto *viewMenu = menuBar()->addMenu("View");
-    viewMenu->addAction("Settings...", this, &MainWindow::showSettings);
-
-    auto *helpMenu = menuBar()->addMenu("Help");
-    helpMenu->addAction(
-        "About SPIDE Studio",
-        this,
-        [this] {
-            statusBar()->showMessage(
-                "SPIDE Studio v0.1 - C++20 / Qt 6 / SPIDE AI",
-                3000
-            );
-        }
-    );
-
-    statusBar()->showMessage("Open a project folder to begin");
-
-    connect(
-        explorer,
-        &Explorer::fileActivated,
-        editor,
-        &Editor::openFile
-    );
-
-    connect(
-        editor,
-        &Editor::fileContextChanged,
-        this,
-        [this](const QString &, const QString &) {
-            updateAIContext();
-        }
-    );
-
-    connect(
-        editor,
-        &Editor::selectionChanged,
-        this,
-        &MainWindow::updateAIContext
-    );
-
-    aiChat->setProvider(spide);
-
-    setProjectPath(QDir::homePath());
-    applySettings();
-}
-
-void MainWindow::applySettings()
-{
-    QSettings settings;
-
-    spide->setServerUrl(
-        settings.value(
-            "spide/serverUrl",
-            "http://localhost:8000/v1/chat/completions"
-        ).toString()
-    );
-
-    spide->setToken(
-        settings.value("spide/token").toString()
-    );
-
-    spide->setModel(
-        settings.value("spide/model", "spide-speed-0.3").toString()
-    );
-
-    terminal->setShell(
-        settings.value("terminal/shell", "/bin/bash").toString()
-    );
-}
-
-void MainWindow::setProjectPath(const QString &path)
-{
-    projectPath = path;
-    explorer->setRootPath(path);
-    terminal->setWorkingDirectory(path);
-
-    setWindowTitle(
-        QString("SPIDE Studio - %1")
-            .arg(QFileInfo(path).fileName())
-    );
-}
-
-void MainWindow::openProject()
-{
-    const QString path =
-        QFileDialog::getExistingDirectory(
-            this,
-            "Open Project Folder",
-            projectPath
-        );
-
-    if (!path.isEmpty())
-        setProjectPath(path);
-}
-
-void MainWindow::showSettings()
-{
-    Settings dialog(this);
-
-    connect(
-        &dialog,
-        &Settings::settingsChanged,
-        this,
-        [this] {
-            applySettings();
-        }
-    );
-
-    dialog.exec();
-}
-
-void MainWindow::updateAIContext()
-{
-    aiChat->setContext(
-        editor->currentFilePath(),
-        editor->currentFileText(),
-        editor->selectedText()
-    );
-}
+#include <QMenuBar>
+#include <QDir>
+MainWindow::MainWindow(QWidget*p):QMainWindow(p){resize(1440,900);setWindowTitle("Spide Studio");style();auto*c=new QWidget;setCentralWidget(c);auto*root=new QVBoxLayout(c);root->setContentsMargins(0,0,0,0);root->setSpacing(0);
+auto*top=new QWidget;top->setObjectName("top");top->setFixedHeight(54);auto*tl=new QHBoxLayout(top);tl->setContentsMargins(18,0,18,0);auto*logo=new QLabel("Spide");logo->setObjectName("logo");tl->addWidget(logo);tl->addStretch();ai=new QToolButton;ai->setText("AI  ON");ai->setCheckable(true);ai->setChecked(true);ai->setObjectName("ai");tl->addWidget(ai);auto*set=new QPushButton("Settings");set->setObjectName("flat");tl->addWidget(set);root->addWidget(top);
+auto*sp=new QSplitter(Qt::Horizontal);e=new Explorer;sp->addWidget(e);auto*mid=new QWidget;auto*ml=new QVBoxLayout(mid);ml->setContentsMargins(0,0,0,0);ml->setSpacing(0);t=new QTabWidget;t->setTabsClosable(true);auto*w=new Editor;w->setPlainText("// Welcome to Spide Studio 0.2\n// Fast. Native. Student-friendly.\n\nStart writing code or ask Spide AI.");t->addTab(w,"Welcome");ml->addWidget(t);term=new Terminal;term->setMinimumHeight(180);ml->addWidget(term);sp->addWidget(mid);a=new AIChat;sp->addWidget(a);sp->setStretchFactor(0,1);sp->setStretchFactor(1,4);sp->setStretchFactor(2,2);root->addWidget(sp,1);
+connect(e,&Explorer::fileActivated,this,[this](const QString&p){auto*x=new Editor;x->openFile(p);t->addTab(x,QFileInfo(p).fileName());t->setCurrentWidget(x);});connect(t,&QTabWidget::tabCloseRequested,this,[this](int i){if(i>0)t->removeTab(i);});statusBar()->showMessage("Ready");auto*s=new QLabel("● Connected");s->setObjectName("good");statusBar()->addPermanentWidget(s);connect(ai,&QToolButton::clicked,this,[this](){a->setEnabled(ai->isChecked());ai->setText(ai->isChecked()?"AI  ON":"AI OFF");});}
+void MainWindow::style(){qApp->setStyleSheet(R"(
+QWidget{font-family:"Segoe UI";font-size:13px;color:#20242a;background:#fff}
+#top{border-bottom:1px solid #e7ebf0}#logo{color:#1677ff;font-size:22px;font-weight:800}
+#panelTitle{color:#7a8491;font-size:11px;font-weight:700}
+QTreeView{border:0;background:#fbfcfe}QTreeView::item{padding:6px;border-radius:6px}QTreeView::item:hover{background:#eef5ff}QTreeView::item:selected{background:#e4f0ff;color:#1268db}
+QTabWidget::pane{border:0}QTabBar::tab{padding:9px 16px;background:#f7f9fb;border-right:1px solid #e7ebf0;color:#68717d}QTabBar::tab:selected{background:#fff;color:#1677ff;border-top:2px solid #1677ff}
+#editor{border:0;padding:16px}#aiChat{background:#fbfcfe;border-left:1px solid #e7ebf0}#aiChat QTextEdit{border:1px solid #e7ebf0;border-radius:8px}#aiChat QLineEdit{border:1px solid #dce2e8;border-radius:8px;padding:9px}
+#primaryButton{background:#1677ff;color:white;border:0;border-radius:7px;padding:8px 14px;font-weight:700}#flat{background:transparent;border:0;padding:7px 10px;color:#5d6672}#ai{background:#eef6ff;color:#1677ff;border:1px solid #d8eaff;border-radius:7px;padding:7px 12px}
+#terminal{background:#111827;border-top:1px solid #e7ebf0}#terminal QPlainTextEdit{background:#111827;color:#d7e0ea;border:0}#terminal QLineEdit{background:#182131;color:#e8eef5;border:1px solid #263246;border-radius:6px;padding:7px}
+QStatusBar{border-top:1px solid #e7ebf0;color:#7a8491}#good{color:#1aa66a;padding-right:10px}QSplitter::handle{background:#e7ebf0}
+)");}
