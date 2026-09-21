@@ -1,0 +1,57 @@
+name: Build SPIDE Studio Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          host: windows
+          target: desktop
+          arch: win64_mingw
+          modules: 'qtnetwork'
+          cache: true
+
+      - name: Configure
+        run: |
+          cmake -S . -B build `
+            -G "MinGW Makefiles" `
+            -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: |
+          cmake --build build --config Release --parallel
+
+      - name: Collect executable
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path release
+          Copy-Item build\SpideStudio.exe release\SpideStudio.exe
+
+      - name: Deploy Qt
+        shell: pwsh
+        run: |
+          windeployqt release\SpideStudio.exe --release --no-translations
+
+      - name: Create ZIP
+        shell: pwsh
+        run: |
+          Compress-Archive -Path release\* -DestinationPath SPIDE-Studio-Windows.zip
+
+      - name: Upload Windows Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: SPIDE-Studio-Windows
+          path: SPIDE-Studio-Windows.zip
