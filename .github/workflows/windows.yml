@@ -25,12 +25,12 @@ jobs:
           cache: true
 
       - name: Configure
+        shell: pwsh
         run: |
-          cmake -S . -B build `
-            -G "MinGW Makefiles" `
-            -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
+        shell: pwsh
         run: |
           cmake --build build --config Release --parallel
 
@@ -38,7 +38,7 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path release
-          Copy-Item build\SpideStudio.exe release\SpideStudio.exe
+          Copy-Item build\spide-studio.exe release\SpideStudio.exe
 
       - name: Deploy Qt
         shell: pwsh
