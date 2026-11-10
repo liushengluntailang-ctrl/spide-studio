@@ -74,16 +74,16 @@ void MainWindow::setupUi() {
 
 void MainWindow::setupCommands() {
     m_commands->registerCommand("file.openFile", tr("&Open File..."), QKeySequence::Open, [this]() { onOpenFile(); });
-    m_commands->registerCommand("file.openFolder", tr("Open &Folder..."), QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O), [this]() { onOpenFolder(); });
+    m_commands->registerCommand("file.openFolder", tr("Open &Folder..."), QKeySequence("Ctrl+Shift+O"), [this]() { onOpenFolder(); });
     m_commands->registerCommand("file.save", tr("&Save"), QKeySequence::Save, [this]() { m_editorManager->saveCurrentFile(); });
     m_commands->registerCommand("file.saveAs", tr("Save &As..."), QKeySequence::SaveAs, [this]() { m_editorManager->saveCurrentFileAs(); });
-    m_commands->registerCommand("file.saveAll", tr("Save A&ll"), QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_S), [this]() { m_editorManager->saveAll(); });
+    m_commands->registerCommand("file.saveAll", tr("Save A&ll"), QKeySequence("Ctrl+Alt+S"), [this]() { m_editorManager->saveAll(); });
     m_commands->registerCommand("file.closeTab", tr("&Close Tab"), QKeySequence::Close, [this]() {
         int idx = m_editorManager->currentIndex();
         if (idx >= 0) m_editorManager->closeTab(idx);
     });
-    m_commands->registerCommand("view.toggleSidebar", tr("Toggle &Sidebar"), QKeySequence(Qt::CTRL | Qt::Key_B), [this]() { toggleSidebar(); });
-    m_commands->registerCommand("view.toggleBottomPanel", tr("Toggle &Panel"), QKeySequence(Qt::CTRL | Qt::Key_J), [this]() { toggleBottomPanel(); });
+    m_commands->registerCommand("view.toggleSidebar", tr("Toggle &Sidebar"), QKeySequence("Ctrl+B"), [this]() { toggleSidebar(); });
+    m_commands->registerCommand("view.toggleBottomPanel", tr("Toggle &Panel"), QKeySequence("Ctrl+J"), [this]() { toggleBottomPanel(); });
     m_commands->registerCommand("app.exit", tr("E&xit"), QKeySequence::Quit, [this]() { close(); });
 }
 

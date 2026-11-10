@@ -1,6 +1,7 @@
 #include "ActivityBar.h"
 #include <QToolButton>
 #include <QVBoxLayout>
+#include <QSizePolicy>
 
 namespace Spide::UI {
 

@@ -1,6 +1,8 @@
 #pragma once
 #include <QPlainTextEdit>
 #include <QWidget>
+#include <QPaintEvent>
+#include <QResizeEvent>
 
 namespace Spide::Modules::Editor {
 

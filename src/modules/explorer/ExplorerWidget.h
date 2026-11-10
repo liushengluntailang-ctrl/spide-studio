@@ -2,6 +2,7 @@
 #include <QFileSystemModel>
 #include <QTreeView>
 #include <QWidget>
+#include <QContextMenuEvent>
 
 namespace Spide::Modules::Explorer {
 
