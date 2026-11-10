@@ -1,6 +1,5 @@
 
 name: SPIDE Studio Windows Build
-
 on:
   workflow_dispatch:
 
