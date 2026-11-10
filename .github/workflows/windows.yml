@@ -1,33 +1,38 @@
 
-name: Build SPIDE Studio Windows
+name: SPIDE Studio Windows Build
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: read
 
 jobs:
-  build-windows:
-    name: Build SPIDE Studio EXE
+  build:
     runs-on: windows-2022
 
     steps:
-      # 1. ソースコード取得
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Python 3.12を準備
+      - name: Clean all old CMake caches
+        shell: pwsh
+        run: |
+          Get-ChildItem -Path . -Filter CMakeCache.txt -Recurse -Force |
+            ForEach-Object {
+              $dir = $_.Directory.FullName
+              Write-Host "Removing stale build directory: $dir"
+              Remove-Item $dir -Recurse -Force
+            }
+
+          Remove-Item build, build-windows, dist -Recurse -Force -ErrorAction SilentlyContinue
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      # 3. Qtインストール
-      - name: Install Qt 6.8.3
+      - name: Setup Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.8.3'
@@ -35,49 +40,14 @@ jobs:
           target: desktop
           arch: win64_msvc2022_64
           setup-python: false
-          modules: ''
           cache: true
 
-      # 4. Visual Studio C++環境
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
 
-      # 5. 古いビルドキャッシュを削除
-      - name: Clean Build Directories
-        shell: pwsh
-        run: |
-          $dirs = @(
-            "build",
-            "build-windows",
-            "cmake-build-debug",
-            "cmake-build-release"
-          )
-
-          foreach ($dir in $dirs) {
-            if (Test-Path $dir) {
-              Remove-Item $dir -Recurse -Force
-              Write-Host "Removed old directory: $dir"
-            }
-          }
-
-      # 6. Qt環境確認
-      - name: Verify Qt
-        shell: pwsh
-        run: |
-          if ([string]::IsNullOrWhiteSpace($env:QT_ROOT_DIR)) {
-            throw "QT_ROOT_DIR is not set."
-          }
-
-          Write-Host "Qt root: $env:QT_ROOT_DIR"
-
-          if (!(Test-Path "$env:QT_ROOT_DIR/bin/windeployqt.exe")) {
-            throw "windeployqt.exe not found."
-          }
-
-      # 7. CMake構成
-      - name: Configure CMake
+      - name: Configure
         shell: pwsh
         run: |
           cmake -S . -B build-windows `
@@ -85,74 +55,35 @@ jobs:
             -A x64 `
             "-DCMAKE_PREFIX_PATH=$env:QT_ROOT_DIR"
 
-      # 8. SPIDE Studio本体をビルド
-      - name: Build SPIDE Studio
+      - name: Build
+        run: cmake --build build-windows --config Release --target SpideStudio --parallel 2
+
+      - name: Verify
         shell: pwsh
         run: |
-          cmake --build build-windows `
-            --config Release `
-            --target SpideStudio `
-            --parallel 2
-
-      # 9. EXE確認
-      - name: Verify Executable
-        shell: pwsh
-        run: |
-          $exe = Get-ChildItem build-windows `
-            -Filter SpideStudio.exe `
-            -Recurse |
-            Where-Object {
-              $_.FullName -notmatch '\\CMakeFiles\\'
-            } |
-            Select-Object -First 1
-
-          if (!$exe) {
-            throw "SpideStudio.exe was not generated."
+          $exe = "build-windows/Release/SpideStudio.exe"
+          if (!(Test-Path $exe)) {
+            throw "SpideStudio.exe not found: $exe"
           }
 
-          Write-Host "Found: $($exe.FullName)"
-
-      # 10. 配布フォルダー作成
-      - name: Prepare Distribution
+      - name: Package
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force dist | Out-Null
+          Copy-Item build-windows/Release/SpideStudio.exe dist/
 
-          $exe = Get-ChildItem build-windows `
-            -Filter SpideStudio.exe `
-            -Recurse |
-            Where-Object {
-              $_.FullName -notmatch '\\CMakeFiles\\'
-            } |
-            Select-Object -First 1
-
-          Copy-Item $exe.FullName dist/SpideStudio.exe
-
-      # 11. Qtランタイム同梱
-      - name: Deploy Qt Runtime
-        shell: pwsh
-        run: |
           & "$env:QT_ROOT_DIR/bin/windeployqt.exe" `
-            --release `
-            --compiler-runtime `
-            --no-translations `
+            --release --compiler-runtime --no-translations `
             dist/SpideStudio.exe
 
           if ($LASTEXITCODE -ne 0) {
-            throw "windeployqt failed."
+            throw "Qt deployment failed"
           }
 
-      # 12. ZIP作成
-      - name: Create ZIP
-        shell: pwsh
-        run: |
-          Compress-Archive `
-            -Path dist/* `
-            -DestinationPath SPIDE-Studio-Windows.zip `
-            -Force
+          Compress-Archive -Path dist/* `
+            -DestinationPath SPIDE-Studio-Windows.zip -Force
 
-      # 13. 成果物アップロード
-      - name: Upload Windows Build
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: SPIDE-Studio-Windows
