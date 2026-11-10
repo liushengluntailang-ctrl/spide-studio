@@ -31,7 +31,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Qt
+      # --- Qt セットアップ (QtNetworkは標準で含まれるため modules 指定は不要) ---
+      - name: Install Qt (Linux)
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.6.3'
@@ -53,7 +54,7 @@ jobs:
           target: 'desktop'
         if: runner.os == 'macOS'
 
-      # --- Linux依存関係 ---
+      # --- Linux 依存パッケージ ---
       - name: Install Linux Dependencies
         if: runner.os == 'Linux'
         run: |
