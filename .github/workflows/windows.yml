@@ -1,3 +1,4 @@
+
 name: Build SPIDE Studio Windows
 
 on:
@@ -6,13 +7,28 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   build-windows:
-    runs-on: windows-latest
+    name: Build SPIDE Studio EXE
+    runs-on: windows-2022
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify Python
+        shell: pwsh
+        run: |
+          python --version
+          python -c "import sys; print(sys.executable)"
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -21,37 +37,58 @@ jobs:
           host: windows
           target: desktop
           arch: win64_mingw
-          modules: 'qtnetwork'
+          tools: 'tools_mingw1310'
+          setup-python: false
+          modules: ''
           cache: true
 
-      - name: Configure
+      - name: Configure CMake
         shell: pwsh
         run: |
-          cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+          cmake -S . -B build-windows `
+            -G "MinGW Makefiles" `
+            -DCMAKE_BUILD_TYPE=Release
 
-      - name: Build
+      - name: Build SPIDE Studio
         shell: pwsh
         run: |
-          cmake --build build --config Release --parallel
+          cmake --build build-windows `
+            --target SpideStudio `
+            --config Release `
+            --parallel 2
+
+      - name: Verify executable
+        shell: pwsh
+        run: |
+          $exe = "build-windows/SpideStudio.exe"
+
+          if (!(Test-Path $exe)) {
+            throw "SpideStudio.exe was not generated."
+          }
+
+          Write-Host "SPIDE Studio EXE found!"
 
       - name: Collect executable
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force -Path release
-          Copy-Item build\spide-studio.exe release\SpideStudio.exe
+          New-Item -ItemType Directory -Force release | Out-Null
+          Copy-Item build-windows/SpideStudio.exe release/
 
       - name: Deploy Qt
         shell: pwsh
         run: |
-          windeployqt release\SpideStudio.exe --release --no-translations
+          windeployqt --release --compiler-runtime `
+            --no-translations release/SpideStudio.exe
 
       - name: Create ZIP
         shell: pwsh
         run: |
-          Compress-Archive -Path release\* -DestinationPath SPIDE-Studio-Windows.zip
+          Compress-Archive -Path release/* `
+            -DestinationPath SPIDE-Studio-Windows.zip -Force
 
       - name: Upload Windows Build
         uses: actions/upload-artifact@v4
         with:
           name: SPIDE-Studio-Windows
           path: SPIDE-Studio-Windows.zip
+          if-no-files-found: error
