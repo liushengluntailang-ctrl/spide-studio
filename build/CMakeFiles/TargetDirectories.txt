@@ -1,5 +1,0 @@
-/workspaces/spide-studio/build/CMakeFiles/SpideStudio.dir
-/workspaces/spide-studio/build/CMakeFiles/edit_cache.dir
-/workspaces/spide-studio/build/CMakeFiles/rebuild_cache.dir
-/workspaces/spide-studio/build/CMakeFiles/SpideStudio_autogen_timestamp_deps.dir
-/workspaces/spide-studio/build/CMakeFiles/SpideStudio_autogen.dir

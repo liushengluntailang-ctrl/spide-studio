@@ -1,0 +1,6 @@
+build/
+bin/
+lib/
+*.user
+.DS_Store
+*.autosave
