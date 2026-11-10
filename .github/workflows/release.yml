@@ -1,0 +1,109 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            platform: linux
+            asset_name: SpideStudio-linux-x64.tar.gz
+          - os: windows-latest
+            platform: windows
+            asset_name: SpideStudio-windows-x64.zip
+          - os: macos-13
+            platform: macos
+            asset_name: SpideStudio-macos-x64.zip
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.6.3'
+          host: 'linux'
+          target: 'desktop'
+        if: runner.os == 'Linux'
+
+      - name: Install Qt (Windows)
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.6.3'
+          arch: 'win64_msvc2019_64'
+        if: runner.os == 'Windows'
+
+      - name: Install Qt (macOS)
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.6.3'
+          target: 'desktop'
+        if: runner.os == 'macOS'
+
+      # --- Linux依存関係 ---
+      - name: Install Linux Dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-dev libxkbcommon-dev libxkbcommon-x11-0 libegl1-mesa-dev libfontconfig1-dev
+
+      # --- CMake 設定 & ビルド ---
+      - name: Configure and Build (Linux/macOS)
+        if: runner.os != 'Windows'
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j4
+
+      - name: Configure and Build (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release --parallel 4
+
+      # --- パッケージング (Linux) ---
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p package-linux
+          cp build/SpideStudio package-linux/
+          tar -czvf ${{ matrix.asset_name }} -C package-linux SpideStudio
+
+      # --- パッケージング (Windows) ---
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path package-windows
+          Copy-Item build\Release\SpideStudio.exe package-windows\
+          windeployqt --release --no-translations --compiler-runtime package-windows\SpideStudio.exe
+          Compress-Archive -Path package-windows\* -DestinationPath ${{ matrix.asset_name }}
+
+      # --- パッケージング (macOS) ---
+      - name: Package (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p package-macos
+          cp build/SpideStudio package-macos/
+          zip -r ${{ matrix.asset_name }} package-macos/SpideStudio
+
+      # --- リリースへアップロード ---
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ matrix.asset_name }}
+          draft: false
+          prerelease: false

@@ -22,7 +22,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+CMAKE_BUILD_TYPE:STRING=Release
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -170,19 +170,19 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=spide-studio
+CMAKE_PROJECT_NAME:STATIC=SpideStudio
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION:STATIC=0.1.0
+CMAKE_PROJECT_VERSION:STATIC=0.2
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_MAJOR:STATIC=0
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MINOR:STATIC=1
+CMAKE_PROJECT_VERSION_MINOR:STATIC=2
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_PATCH:STATIC=0
+CMAKE_PROJECT_VERSION_PATCH:STATIC=
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_TWEAK:STATIC=
@@ -331,6 +331,15 @@ Qt6Widgets_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets
 //The directory containing a CMake configuration file for Qt6.
 Qt6_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Qt6
 
+//Value Computed by CMake
+SpideStudio_BINARY_DIR:STATIC=/workspaces/spide-studio/build
+
+//Value Computed by CMake
+SpideStudio_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+SpideStudio_SOURCE_DIR:STATIC=/workspaces/spide-studio
+
 //Path to a program.
 Vulkan_GLSLANG_VALIDATOR_EXECUTABLE:FILEPATH=Vulkan_GLSLANG_VALIDATOR_EXECUTABLE-NOTFOUND
 
@@ -348,15 +357,6 @@ XKB_INCLUDE_DIR:PATH=XKB_INCLUDE_DIR-NOTFOUND
 
 //Path to a library.
 XKB_LIBRARY:FILEPATH=XKB_LIBRARY-NOTFOUND
-
-//Value Computed by CMake
-spide-studio_BINARY_DIR:STATIC=/workspaces/spide-studio/build
-
-//Value Computed by CMake
-spide-studio_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-spide-studio_SOURCE_DIR:STATIC=/workspaces/spide-studio
 
 
 ########################

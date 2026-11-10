@@ -117,266 +117,122 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named spide-studio
+# Target rules for targets named SpideStudio
 
 # Build rule for target.
-spide-studio: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 spide-studio
-.PHONY : spide-studio
+SpideStudio: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SpideStudio
+.PHONY : SpideStudio
 
 # fast build rule for target.
-spide-studio/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/build
-.PHONY : spide-studio/fast
+SpideStudio/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/build
+.PHONY : SpideStudio/fast
 
 #=============================================================================
-# Target rules for targets named spide-studio_autogen_timestamp_deps
+# Target rules for targets named SpideStudio_autogen_timestamp_deps
 
 # Build rule for target.
-spide-studio_autogen_timestamp_deps: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 spide-studio_autogen_timestamp_deps
-.PHONY : spide-studio_autogen_timestamp_deps
+SpideStudio_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SpideStudio_autogen_timestamp_deps
+.PHONY : SpideStudio_autogen_timestamp_deps
 
 # fast build rule for target.
-spide-studio_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio_autogen_timestamp_deps.dir/build.make CMakeFiles/spide-studio_autogen_timestamp_deps.dir/build
-.PHONY : spide-studio_autogen_timestamp_deps/fast
+SpideStudio_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio_autogen_timestamp_deps.dir/build.make CMakeFiles/SpideStudio_autogen_timestamp_deps.dir/build
+.PHONY : SpideStudio_autogen_timestamp_deps/fast
 
 #=============================================================================
-# Target rules for targets named spide-studio_autogen
+# Target rules for targets named SpideStudio_autogen
 
 # Build rule for target.
-spide-studio_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 spide-studio_autogen
-.PHONY : spide-studio_autogen
+SpideStudio_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SpideStudio_autogen
+.PHONY : SpideStudio_autogen
 
 # fast build rule for target.
-spide-studio_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio_autogen.dir/build.make CMakeFiles/spide-studio_autogen.dir/build
-.PHONY : spide-studio_autogen/fast
+SpideStudio_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio_autogen.dir/build.make CMakeFiles/SpideStudio_autogen.dir/build
+.PHONY : SpideStudio_autogen/fast
 
-spide-studio_autogen/mocs_compilation.o: spide-studio_autogen/mocs_compilation.cpp.o
-.PHONY : spide-studio_autogen/mocs_compilation.o
-
-# target to build an object file
-spide-studio_autogen/mocs_compilation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/spide-studio_autogen/mocs_compilation.cpp.o
-.PHONY : spide-studio_autogen/mocs_compilation.cpp.o
-
-spide-studio_autogen/mocs_compilation.i: spide-studio_autogen/mocs_compilation.cpp.i
-.PHONY : spide-studio_autogen/mocs_compilation.i
-
-# target to preprocess a source file
-spide-studio_autogen/mocs_compilation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/spide-studio_autogen/mocs_compilation.cpp.i
-.PHONY : spide-studio_autogen/mocs_compilation.cpp.i
-
-spide-studio_autogen/mocs_compilation.s: spide-studio_autogen/mocs_compilation.cpp.s
-.PHONY : spide-studio_autogen/mocs_compilation.s
-
-# target to generate assembly for a file
-spide-studio_autogen/mocs_compilation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/spide-studio_autogen/mocs_compilation.cpp.s
-.PHONY : spide-studio_autogen/mocs_compilation.cpp.s
-
-src/AIChat.o: src/AIChat.cpp.o
-.PHONY : src/AIChat.o
+SpideStudio_autogen/3YJK5W5UP7/qrc_resources.o: SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.o
+.PHONY : SpideStudio_autogen/3YJK5W5UP7/qrc_resources.o
 
 # target to build an object file
-src/AIChat.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/AIChat.cpp.o
-.PHONY : src/AIChat.cpp.o
+SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.o
+.PHONY : SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.o
 
-src/AIChat.i: src/AIChat.cpp.i
-.PHONY : src/AIChat.i
+SpideStudio_autogen/3YJK5W5UP7/qrc_resources.i: SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.i
+.PHONY : SpideStudio_autogen/3YJK5W5UP7/qrc_resources.i
 
 # target to preprocess a source file
-src/AIChat.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/AIChat.cpp.i
-.PHONY : src/AIChat.cpp.i
+SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.i
+.PHONY : SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.i
 
-src/AIChat.s: src/AIChat.cpp.s
-.PHONY : src/AIChat.s
+SpideStudio_autogen/3YJK5W5UP7/qrc_resources.s: SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.s
+.PHONY : SpideStudio_autogen/3YJK5W5UP7/qrc_resources.s
 
 # target to generate assembly for a file
-src/AIChat.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/AIChat.cpp.s
-.PHONY : src/AIChat.cpp.s
+SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.s
+.PHONY : SpideStudio_autogen/3YJK5W5UP7/qrc_resources.cpp.s
 
-src/Editor.o: src/Editor.cpp.o
-.PHONY : src/Editor.o
+SpideStudio_autogen/mocs_compilation.o: SpideStudio_autogen/mocs_compilation.cpp.o
+.PHONY : SpideStudio_autogen/mocs_compilation.o
 
 # target to build an object file
-src/Editor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Editor.cpp.o
-.PHONY : src/Editor.cpp.o
+SpideStudio_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/SpideStudio_autogen/mocs_compilation.cpp.o
+.PHONY : SpideStudio_autogen/mocs_compilation.cpp.o
 
-src/Editor.i: src/Editor.cpp.i
-.PHONY : src/Editor.i
+SpideStudio_autogen/mocs_compilation.i: SpideStudio_autogen/mocs_compilation.cpp.i
+.PHONY : SpideStudio_autogen/mocs_compilation.i
 
 # target to preprocess a source file
-src/Editor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Editor.cpp.i
-.PHONY : src/Editor.cpp.i
+SpideStudio_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/SpideStudio_autogen/mocs_compilation.cpp.i
+.PHONY : SpideStudio_autogen/mocs_compilation.cpp.i
 
-src/Editor.s: src/Editor.cpp.s
-.PHONY : src/Editor.s
+SpideStudio_autogen/mocs_compilation.s: SpideStudio_autogen/mocs_compilation.cpp.s
+.PHONY : SpideStudio_autogen/mocs_compilation.s
 
 # target to generate assembly for a file
-src/Editor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Editor.cpp.s
-.PHONY : src/Editor.cpp.s
+SpideStudio_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/SpideStudio_autogen/mocs_compilation.cpp.s
+.PHONY : SpideStudio_autogen/mocs_compilation.cpp.s
 
-src/Explorer.o: src/Explorer.cpp.o
-.PHONY : src/Explorer.o
+src/core/CommandManager.o: src/core/CommandManager.cpp.o
+.PHONY : src/core/CommandManager.o
 
 # target to build an object file
-src/Explorer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Explorer.cpp.o
-.PHONY : src/Explorer.cpp.o
+src/core/CommandManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/core/CommandManager.cpp.o
+.PHONY : src/core/CommandManager.cpp.o
 
-src/Explorer.i: src/Explorer.cpp.i
-.PHONY : src/Explorer.i
-
-# target to preprocess a source file
-src/Explorer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Explorer.cpp.i
-.PHONY : src/Explorer.cpp.i
-
-src/Explorer.s: src/Explorer.cpp.s
-.PHONY : src/Explorer.s
-
-# target to generate assembly for a file
-src/Explorer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Explorer.cpp.s
-.PHONY : src/Explorer.cpp.s
-
-src/MainWindow.o: src/MainWindow.cpp.o
-.PHONY : src/MainWindow.o
-
-# target to build an object file
-src/MainWindow.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/MainWindow.cpp.o
-.PHONY : src/MainWindow.cpp.o
-
-src/MainWindow.i: src/MainWindow.cpp.i
-.PHONY : src/MainWindow.i
+src/core/CommandManager.i: src/core/CommandManager.cpp.i
+.PHONY : src/core/CommandManager.i
 
 # target to preprocess a source file
-src/MainWindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/MainWindow.cpp.i
-.PHONY : src/MainWindow.cpp.i
+src/core/CommandManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/core/CommandManager.cpp.i
+.PHONY : src/core/CommandManager.cpp.i
 
-src/MainWindow.s: src/MainWindow.cpp.s
-.PHONY : src/MainWindow.s
-
-# target to generate assembly for a file
-src/MainWindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/MainWindow.cpp.s
-.PHONY : src/MainWindow.cpp.s
-
-src/Settings.o: src/Settings.cpp.o
-.PHONY : src/Settings.o
-
-# target to build an object file
-src/Settings.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Settings.cpp.o
-.PHONY : src/Settings.cpp.o
-
-src/Settings.i: src/Settings.cpp.i
-.PHONY : src/Settings.i
-
-# target to preprocess a source file
-src/Settings.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Settings.cpp.i
-.PHONY : src/Settings.cpp.i
-
-src/Settings.s: src/Settings.cpp.s
-.PHONY : src/Settings.s
+src/core/CommandManager.s: src/core/CommandManager.cpp.s
+.PHONY : src/core/CommandManager.s
 
 # target to generate assembly for a file
-src/Settings.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Settings.cpp.s
-.PHONY : src/Settings.cpp.s
-
-src/Terminal.o: src/Terminal.cpp.o
-.PHONY : src/Terminal.o
-
-# target to build an object file
-src/Terminal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Terminal.cpp.o
-.PHONY : src/Terminal.cpp.o
-
-src/Terminal.i: src/Terminal.cpp.i
-.PHONY : src/Terminal.i
-
-# target to preprocess a source file
-src/Terminal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Terminal.cpp.i
-.PHONY : src/Terminal.cpp.i
-
-src/Terminal.s: src/Terminal.cpp.s
-.PHONY : src/Terminal.s
-
-# target to generate assembly for a file
-src/Terminal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/Terminal.cpp.s
-.PHONY : src/Terminal.cpp.s
-
-src/ai/IAIProvider.o: src/ai/IAIProvider.cpp.o
-.PHONY : src/ai/IAIProvider.o
-
-# target to build an object file
-src/ai/IAIProvider.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/ai/IAIProvider.cpp.o
-.PHONY : src/ai/IAIProvider.cpp.o
-
-src/ai/IAIProvider.i: src/ai/IAIProvider.cpp.i
-.PHONY : src/ai/IAIProvider.i
-
-# target to preprocess a source file
-src/ai/IAIProvider.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/ai/IAIProvider.cpp.i
-.PHONY : src/ai/IAIProvider.cpp.i
-
-src/ai/IAIProvider.s: src/ai/IAIProvider.cpp.s
-.PHONY : src/ai/IAIProvider.s
-
-# target to generate assembly for a file
-src/ai/IAIProvider.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/ai/IAIProvider.cpp.s
-.PHONY : src/ai/IAIProvider.cpp.s
-
-src/ai/SPIDEProvider.o: src/ai/SPIDEProvider.cpp.o
-.PHONY : src/ai/SPIDEProvider.o
-
-# target to build an object file
-src/ai/SPIDEProvider.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/ai/SPIDEProvider.cpp.o
-.PHONY : src/ai/SPIDEProvider.cpp.o
-
-src/ai/SPIDEProvider.i: src/ai/SPIDEProvider.cpp.i
-.PHONY : src/ai/SPIDEProvider.i
-
-# target to preprocess a source file
-src/ai/SPIDEProvider.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/ai/SPIDEProvider.cpp.i
-.PHONY : src/ai/SPIDEProvider.cpp.i
-
-src/ai/SPIDEProvider.s: src/ai/SPIDEProvider.cpp.s
-.PHONY : src/ai/SPIDEProvider.s
-
-# target to generate assembly for a file
-src/ai/SPIDEProvider.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/ai/SPIDEProvider.cpp.s
-.PHONY : src/ai/SPIDEProvider.cpp.s
+src/core/CommandManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/core/CommandManager.cpp.s
+.PHONY : src/core/CommandManager.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -384,7 +240,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -392,8 +248,272 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/spide-studio.dir/build.make CMakeFiles/spide-studio.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/modules/editor/CodeEditor.o: src/modules/editor/CodeEditor.cpp.o
+.PHONY : src/modules/editor/CodeEditor.o
+
+# target to build an object file
+src/modules/editor/CodeEditor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/editor/CodeEditor.cpp.o
+.PHONY : src/modules/editor/CodeEditor.cpp.o
+
+src/modules/editor/CodeEditor.i: src/modules/editor/CodeEditor.cpp.i
+.PHONY : src/modules/editor/CodeEditor.i
+
+# target to preprocess a source file
+src/modules/editor/CodeEditor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/editor/CodeEditor.cpp.i
+.PHONY : src/modules/editor/CodeEditor.cpp.i
+
+src/modules/editor/CodeEditor.s: src/modules/editor/CodeEditor.cpp.s
+.PHONY : src/modules/editor/CodeEditor.s
+
+# target to generate assembly for a file
+src/modules/editor/CodeEditor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/editor/CodeEditor.cpp.s
+.PHONY : src/modules/editor/CodeEditor.cpp.s
+
+src/modules/editor/EditorManager.o: src/modules/editor/EditorManager.cpp.o
+.PHONY : src/modules/editor/EditorManager.o
+
+# target to build an object file
+src/modules/editor/EditorManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/editor/EditorManager.cpp.o
+.PHONY : src/modules/editor/EditorManager.cpp.o
+
+src/modules/editor/EditorManager.i: src/modules/editor/EditorManager.cpp.i
+.PHONY : src/modules/editor/EditorManager.i
+
+# target to preprocess a source file
+src/modules/editor/EditorManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/editor/EditorManager.cpp.i
+.PHONY : src/modules/editor/EditorManager.cpp.i
+
+src/modules/editor/EditorManager.s: src/modules/editor/EditorManager.cpp.s
+.PHONY : src/modules/editor/EditorManager.s
+
+# target to generate assembly for a file
+src/modules/editor/EditorManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/editor/EditorManager.cpp.s
+.PHONY : src/modules/editor/EditorManager.cpp.s
+
+src/modules/explorer/ExplorerWidget.o: src/modules/explorer/ExplorerWidget.cpp.o
+.PHONY : src/modules/explorer/ExplorerWidget.o
+
+# target to build an object file
+src/modules/explorer/ExplorerWidget.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/explorer/ExplorerWidget.cpp.o
+.PHONY : src/modules/explorer/ExplorerWidget.cpp.o
+
+src/modules/explorer/ExplorerWidget.i: src/modules/explorer/ExplorerWidget.cpp.i
+.PHONY : src/modules/explorer/ExplorerWidget.i
+
+# target to preprocess a source file
+src/modules/explorer/ExplorerWidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/explorer/ExplorerWidget.cpp.i
+.PHONY : src/modules/explorer/ExplorerWidget.cpp.i
+
+src/modules/explorer/ExplorerWidget.s: src/modules/explorer/ExplorerWidget.cpp.s
+.PHONY : src/modules/explorer/ExplorerWidget.s
+
+# target to generate assembly for a file
+src/modules/explorer/ExplorerWidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/explorer/ExplorerWidget.cpp.s
+.PHONY : src/modules/explorer/ExplorerWidget.cpp.s
+
+src/modules/panels/OutputPanel.o: src/modules/panels/OutputPanel.cpp.o
+.PHONY : src/modules/panels/OutputPanel.o
+
+# target to build an object file
+src/modules/panels/OutputPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/panels/OutputPanel.cpp.o
+.PHONY : src/modules/panels/OutputPanel.cpp.o
+
+src/modules/panels/OutputPanel.i: src/modules/panels/OutputPanel.cpp.i
+.PHONY : src/modules/panels/OutputPanel.i
+
+# target to preprocess a source file
+src/modules/panels/OutputPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/panels/OutputPanel.cpp.i
+.PHONY : src/modules/panels/OutputPanel.cpp.i
+
+src/modules/panels/OutputPanel.s: src/modules/panels/OutputPanel.cpp.s
+.PHONY : src/modules/panels/OutputPanel.s
+
+# target to generate assembly for a file
+src/modules/panels/OutputPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/panels/OutputPanel.cpp.s
+.PHONY : src/modules/panels/OutputPanel.cpp.s
+
+src/modules/panels/PlaceholderPanel.o: src/modules/panels/PlaceholderPanel.cpp.o
+.PHONY : src/modules/panels/PlaceholderPanel.o
+
+# target to build an object file
+src/modules/panels/PlaceholderPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/panels/PlaceholderPanel.cpp.o
+.PHONY : src/modules/panels/PlaceholderPanel.cpp.o
+
+src/modules/panels/PlaceholderPanel.i: src/modules/panels/PlaceholderPanel.cpp.i
+.PHONY : src/modules/panels/PlaceholderPanel.i
+
+# target to preprocess a source file
+src/modules/panels/PlaceholderPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/panels/PlaceholderPanel.cpp.i
+.PHONY : src/modules/panels/PlaceholderPanel.cpp.i
+
+src/modules/panels/PlaceholderPanel.s: src/modules/panels/PlaceholderPanel.cpp.s
+.PHONY : src/modules/panels/PlaceholderPanel.s
+
+# target to generate assembly for a file
+src/modules/panels/PlaceholderPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/panels/PlaceholderPanel.cpp.s
+.PHONY : src/modules/panels/PlaceholderPanel.cpp.s
+
+src/modules/terminal/TerminalWidget.o: src/modules/terminal/TerminalWidget.cpp.o
+.PHONY : src/modules/terminal/TerminalWidget.o
+
+# target to build an object file
+src/modules/terminal/TerminalWidget.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/terminal/TerminalWidget.cpp.o
+.PHONY : src/modules/terminal/TerminalWidget.cpp.o
+
+src/modules/terminal/TerminalWidget.i: src/modules/terminal/TerminalWidget.cpp.i
+.PHONY : src/modules/terminal/TerminalWidget.i
+
+# target to preprocess a source file
+src/modules/terminal/TerminalWidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/terminal/TerminalWidget.cpp.i
+.PHONY : src/modules/terminal/TerminalWidget.cpp.i
+
+src/modules/terminal/TerminalWidget.s: src/modules/terminal/TerminalWidget.cpp.s
+.PHONY : src/modules/terminal/TerminalWidget.s
+
+# target to generate assembly for a file
+src/modules/terminal/TerminalWidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/modules/terminal/TerminalWidget.cpp.s
+.PHONY : src/modules/terminal/TerminalWidget.cpp.s
+
+src/ui/ActivityBar.o: src/ui/ActivityBar.cpp.o
+.PHONY : src/ui/ActivityBar.o
+
+# target to build an object file
+src/ui/ActivityBar.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/ActivityBar.cpp.o
+.PHONY : src/ui/ActivityBar.cpp.o
+
+src/ui/ActivityBar.i: src/ui/ActivityBar.cpp.i
+.PHONY : src/ui/ActivityBar.i
+
+# target to preprocess a source file
+src/ui/ActivityBar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/ActivityBar.cpp.i
+.PHONY : src/ui/ActivityBar.cpp.i
+
+src/ui/ActivityBar.s: src/ui/ActivityBar.cpp.s
+.PHONY : src/ui/ActivityBar.s
+
+# target to generate assembly for a file
+src/ui/ActivityBar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/ActivityBar.cpp.s
+.PHONY : src/ui/ActivityBar.cpp.s
+
+src/ui/BottomPanel.o: src/ui/BottomPanel.cpp.o
+.PHONY : src/ui/BottomPanel.o
+
+# target to build an object file
+src/ui/BottomPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/BottomPanel.cpp.o
+.PHONY : src/ui/BottomPanel.cpp.o
+
+src/ui/BottomPanel.i: src/ui/BottomPanel.cpp.i
+.PHONY : src/ui/BottomPanel.i
+
+# target to preprocess a source file
+src/ui/BottomPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/BottomPanel.cpp.i
+.PHONY : src/ui/BottomPanel.cpp.i
+
+src/ui/BottomPanel.s: src/ui/BottomPanel.cpp.s
+.PHONY : src/ui/BottomPanel.s
+
+# target to generate assembly for a file
+src/ui/BottomPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/BottomPanel.cpp.s
+.PHONY : src/ui/BottomPanel.cpp.s
+
+src/ui/MainWindow.o: src/ui/MainWindow.cpp.o
+.PHONY : src/ui/MainWindow.o
+
+# target to build an object file
+src/ui/MainWindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/MainWindow.cpp.o
+.PHONY : src/ui/MainWindow.cpp.o
+
+src/ui/MainWindow.i: src/ui/MainWindow.cpp.i
+.PHONY : src/ui/MainWindow.i
+
+# target to preprocess a source file
+src/ui/MainWindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/MainWindow.cpp.i
+.PHONY : src/ui/MainWindow.cpp.i
+
+src/ui/MainWindow.s: src/ui/MainWindow.cpp.s
+.PHONY : src/ui/MainWindow.s
+
+# target to generate assembly for a file
+src/ui/MainWindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/MainWindow.cpp.s
+.PHONY : src/ui/MainWindow.cpp.s
+
+src/ui/Sidebar.o: src/ui/Sidebar.cpp.o
+.PHONY : src/ui/Sidebar.o
+
+# target to build an object file
+src/ui/Sidebar.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/Sidebar.cpp.o
+.PHONY : src/ui/Sidebar.cpp.o
+
+src/ui/Sidebar.i: src/ui/Sidebar.cpp.i
+.PHONY : src/ui/Sidebar.i
+
+# target to preprocess a source file
+src/ui/Sidebar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/Sidebar.cpp.i
+.PHONY : src/ui/Sidebar.cpp.i
+
+src/ui/Sidebar.s: src/ui/Sidebar.cpp.s
+.PHONY : src/ui/Sidebar.s
+
+# target to generate assembly for a file
+src/ui/Sidebar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/Sidebar.cpp.s
+.PHONY : src/ui/Sidebar.cpp.s
+
+src/ui/StatusBar.o: src/ui/StatusBar.cpp.o
+.PHONY : src/ui/StatusBar.o
+
+# target to build an object file
+src/ui/StatusBar.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/StatusBar.cpp.o
+.PHONY : src/ui/StatusBar.cpp.o
+
+src/ui/StatusBar.i: src/ui/StatusBar.cpp.i
+.PHONY : src/ui/StatusBar.i
+
+# target to preprocess a source file
+src/ui/StatusBar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/StatusBar.cpp.i
+.PHONY : src/ui/StatusBar.cpp.i
+
+src/ui/StatusBar.s: src/ui/StatusBar.cpp.s
+.PHONY : src/ui/StatusBar.s
+
+# target to generate assembly for a file
+src/ui/StatusBar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SpideStudio.dir/build.make CMakeFiles/SpideStudio.dir/src/ui/StatusBar.cpp.s
+.PHONY : src/ui/StatusBar.cpp.s
 
 # Help Target
 help:
@@ -403,39 +523,54 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... spide-studio_autogen"
-	@echo "... spide-studio_autogen_timestamp_deps"
-	@echo "... spide-studio"
-	@echo "... spide-studio_autogen/mocs_compilation.o"
-	@echo "... spide-studio_autogen/mocs_compilation.i"
-	@echo "... spide-studio_autogen/mocs_compilation.s"
-	@echo "... src/AIChat.o"
-	@echo "... src/AIChat.i"
-	@echo "... src/AIChat.s"
-	@echo "... src/Editor.o"
-	@echo "... src/Editor.i"
-	@echo "... src/Editor.s"
-	@echo "... src/Explorer.o"
-	@echo "... src/Explorer.i"
-	@echo "... src/Explorer.s"
-	@echo "... src/MainWindow.o"
-	@echo "... src/MainWindow.i"
-	@echo "... src/MainWindow.s"
-	@echo "... src/Settings.o"
-	@echo "... src/Settings.i"
-	@echo "... src/Settings.s"
-	@echo "... src/Terminal.o"
-	@echo "... src/Terminal.i"
-	@echo "... src/Terminal.s"
-	@echo "... src/ai/IAIProvider.o"
-	@echo "... src/ai/IAIProvider.i"
-	@echo "... src/ai/IAIProvider.s"
-	@echo "... src/ai/SPIDEProvider.o"
-	@echo "... src/ai/SPIDEProvider.i"
-	@echo "... src/ai/SPIDEProvider.s"
+	@echo "... SpideStudio_autogen"
+	@echo "... SpideStudio_autogen_timestamp_deps"
+	@echo "... SpideStudio"
+	@echo "... SpideStudio_autogen/3YJK5W5UP7/qrc_resources.o"
+	@echo "... SpideStudio_autogen/3YJK5W5UP7/qrc_resources.i"
+	@echo "... SpideStudio_autogen/3YJK5W5UP7/qrc_resources.s"
+	@echo "... SpideStudio_autogen/mocs_compilation.o"
+	@echo "... SpideStudio_autogen/mocs_compilation.i"
+	@echo "... SpideStudio_autogen/mocs_compilation.s"
+	@echo "... src/core/CommandManager.o"
+	@echo "... src/core/CommandManager.i"
+	@echo "... src/core/CommandManager.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/modules/editor/CodeEditor.o"
+	@echo "... src/modules/editor/CodeEditor.i"
+	@echo "... src/modules/editor/CodeEditor.s"
+	@echo "... src/modules/editor/EditorManager.o"
+	@echo "... src/modules/editor/EditorManager.i"
+	@echo "... src/modules/editor/EditorManager.s"
+	@echo "... src/modules/explorer/ExplorerWidget.o"
+	@echo "... src/modules/explorer/ExplorerWidget.i"
+	@echo "... src/modules/explorer/ExplorerWidget.s"
+	@echo "... src/modules/panels/OutputPanel.o"
+	@echo "... src/modules/panels/OutputPanel.i"
+	@echo "... src/modules/panels/OutputPanel.s"
+	@echo "... src/modules/panels/PlaceholderPanel.o"
+	@echo "... src/modules/panels/PlaceholderPanel.i"
+	@echo "... src/modules/panels/PlaceholderPanel.s"
+	@echo "... src/modules/terminal/TerminalWidget.o"
+	@echo "... src/modules/terminal/TerminalWidget.i"
+	@echo "... src/modules/terminal/TerminalWidget.s"
+	@echo "... src/ui/ActivityBar.o"
+	@echo "... src/ui/ActivityBar.i"
+	@echo "... src/ui/ActivityBar.s"
+	@echo "... src/ui/BottomPanel.o"
+	@echo "... src/ui/BottomPanel.i"
+	@echo "... src/ui/BottomPanel.s"
+	@echo "... src/ui/MainWindow.o"
+	@echo "... src/ui/MainWindow.i"
+	@echo "... src/ui/MainWindow.s"
+	@echo "... src/ui/Sidebar.o"
+	@echo "... src/ui/Sidebar.i"
+	@echo "... src/ui/Sidebar.s"
+	@echo "... src/ui/StatusBar.o"
+	@echo "... src/ui/StatusBar.i"
+	@echo "... src/ui/StatusBar.s"
 .PHONY : help
 
 

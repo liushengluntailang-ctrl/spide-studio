@@ -82,14 +82,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/x86_64-linux-gnu/cmake/Qt6GuiTools/Qt6GuiToolsTargets-none.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake"
-  "/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake"
-  "/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkConfig.cmake"
-  "/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake"
-  "/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake"
-  "/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkDependencies.cmake"
-  "/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkTargets-none.cmake"
-  "/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkTargets.cmake"
-  "/usr/lib/x86_64-linux-gnu/cmake/Qt6Network/Qt6NetworkVersionlessTargets.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets/Qt6WidgetsAdditionalTargetInfo.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt6Widgets/Qt6WidgetsConfigVersion.cmake"
@@ -143,6 +135,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/workspaces/spide-studio/CMakeLists.txt"
   "CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeSystem.cmake"
+  "/workspaces/spide-studio/resources/resources.qrc"
   )
 
 # The corresponding makefile is:
@@ -153,14 +146,15 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/spide-studio_autogen.dir/AutogenInfo.json"
+  "CMakeFiles/SpideStudio_autogen.dir/AutogenInfo.json"
+  "CMakeFiles/SpideStudio_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json"
   ".qt/QtDeploySupport.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/spide-studio.dir/DependInfo.cmake"
-  "CMakeFiles/spide-studio_autogen_timestamp_deps.dir/DependInfo.cmake"
-  "CMakeFiles/spide-studio_autogen.dir/DependInfo.cmake"
+  "CMakeFiles/SpideStudio.dir/DependInfo.cmake"
+  "CMakeFiles/SpideStudio_autogen_timestamp_deps.dir/DependInfo.cmake"
+  "CMakeFiles/SpideStudio_autogen.dir/DependInfo.cmake"
   )
