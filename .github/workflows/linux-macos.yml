@@ -1,0 +1,151 @@
+
+name: SPIDE Studio Linux and macOS
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    name: Build Linux ELF
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            libgl1-mesa-dev \
+            libxkbcommon-dev \
+            libxkbcommon-x11-0 \
+            libxcb-cursor0 \
+            libxcb-icccm4 \
+            libxcb-image0 \
+            libxcb-keysyms1 \
+            libxcb-randr0 \
+            libxcb-render-util0 \
+            libxcb-shape0 \
+            libxcb-xfixes0 \
+            libxcb-xinerama0 \
+            libxcb-xkb1 \
+            file \
+            wget
+
+      - name: Setup Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          host: linux
+          target: desktop
+          arch: gcc_64
+          cache: true
+
+      - name: Configure
+        run: |
+          rm -rf build-linux
+          cmake -S . -B build-linux \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR"
+
+      - name: Build
+        run: |
+          cmake --build build-linux \
+            --config Release \
+            --parallel 2
+
+      - name: Verify ELF
+        run: |
+          test -f build-linux/SpideStudio
+          file build-linux/SpideStudio
+
+      - name: Bundle Qt dependencies
+        run: |
+          wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage \
+            -O linuxdeploy
+          wget -q https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage \
+            -O linuxdeploy-plugin-qt
+
+          chmod +x linuxdeploy linuxdeploy-plugin-qt
+
+          export PATH="$PWD:$PATH"
+          export LINUXDEPLOY_PLUGIN_DIR="$PWD"
+          export APPIMAGE_EXTRACT_AND_RUN=1
+
+          ./linuxdeploy \
+            --appdir AppDir \
+            --executable build-linux/SpideStudio \
+            --plugin qt
+
+      - name: Package Linux
+        run: |
+          tar -czf SPIDE-Studio-Linux.tar.gz AppDir
+
+      - name: Upload Linux
+        uses: actions/upload-artifact@v4
+        with:
+          name: SPIDE-Studio-Linux
+          path: SPIDE-Studio-Linux.tar.gz
+          if-no-files-found: error
+
+  macos:
+    name: Build macOS APP
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          host: mac
+          target: desktop
+          arch: clang_64
+          cache: true
+
+      - name: Configure
+        run: |
+          rm -rf build-macos
+          cmake -S . -B build-macos \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR"
+
+      - name: Build
+        run: |
+          cmake --build build-macos \
+            --config Release \
+            --parallel 2
+
+      - name: Verify APP
+        run: |
+          test -d build-macos/SpideStudio.app
+          test -f build-macos/SpideStudio.app/Contents/MacOS/SpideStudio
+
+      - name: Deploy Qt
+        run: |
+          "$QT_ROOT_DIR/bin/macdeployqt" \
+            build-macos/SpideStudio.app \
+            -always-overwrite
+
+      - name: Package macOS
+        run: |
+          ditto -c -k --sequesterRsrc --keepParent \
+            build-macos/SpideStudio.app \
+            SPIDE-Studio-macOS.zip
+
+      - name: Upload macOS
+        uses: actions/upload-artifact@v4
+        with:
+          name: SPIDE-Studio-macOS
+          path: SPIDE-Studio-macOS.zip
+          if-no-files-found: error
