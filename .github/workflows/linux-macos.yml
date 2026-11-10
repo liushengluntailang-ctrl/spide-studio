@@ -22,7 +22,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.12.10'
 
       - name: Install system dependencies
         run: |
@@ -45,7 +45,7 @@ jobs:
             file \
             wget
 
-      - name: Setup Qt
+      - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.8.3'
@@ -114,9 +114,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.12.10'
 
-      - name: Setup Qt
+      - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.8.3'
@@ -131,7 +131,8 @@ jobs:
           rm -rf build-macos
           cmake -S . -B build-macos \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR"
+            -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR" \
+            -DCMAKE_MACOSX_BUNDLE=ON
 
       - name: Build
         run: |
