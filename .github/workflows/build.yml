@@ -11,8 +11,8 @@ permissions:
   contents: read
 
 jobs:
-  windows:
-    name: Build Windows EXE
+  build:
+    name: Build SPIDE Studio
     runs-on: windows-2022
 
     steps:
@@ -24,65 +24,59 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Setup Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: '6.8.3'
-          host: 'windows'
-          target: 'desktop'
-          arch: 'win64_msvc2022_64'
-          cache: true
-
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
 
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.3'
+          host: windows
+          target: desktop
+          arch: win64_msvc2022_64
+          cache: true
+
       - name: Configure CMake
         run: >
-          cmake -S . -B build
-          -G Ninja
+          cmake -S . -B build-windows -G Ninja
           -DCMAKE_BUILD_TYPE=Release
-          -DCMAKE_PREFIX_PATH="${{ env.Qt6_DIR }}/.."
 
-      - name: Build
-        run: cmake --build build --config Release --parallel 2
+      - name: Build SPIDE Studio
+        run: cmake --build build-windows --target SpideStudio --config Release --parallel 2
 
-      - name: Collect EXE
+      - name: Verify executable
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          $exe = "build-windows/SpideStudio.exe"
 
-          $files = Get-ChildItem -Path build -Filter *.exe -Recurse |
-            Where-Object { $_.FullName -notmatch '\\CMakeFiles\\|\\_deps\\' }
+          if (!(Test-Path $exe)) {
+            Write-Host "Build directory contents:"
+            Get-ChildItem build-windows -Recurse |
+              Select-Object -First 100 FullName
 
-          if (-not $files) {
-            throw "No EXE files were generated. Check the CMake build output."
+            throw "SpideStudio.exe was not generated."
           }
 
-          foreach ($file in $files) {
-            Copy-Item $file.FullName dist/
-          }
+          Write-Host "Found SPIDE Studio: $exe"
 
-      - name: Deploy Qt Runtime
+      - name: Prepare distribution
         shell: pwsh
         run: |
-          $exe = Get-ChildItem dist -Filter *.exe | Select-Object -First 1
+          New-Item -ItemType Directory -Force dist | Out-Null
+          Copy-Item build-windows/SpideStudio.exe dist/
 
-          if (-not $exe) {
-            throw "Executable not found."
-          }
+          windeployqt --release --compiler-runtime `
+            --dir dist dist/SpideStudio.exe
 
-          windeployqt --release --dir dist $exe.FullName
-
-      - name: Package
+      - name: Create ZIP
         shell: pwsh
         run: |
           Compress-Archive -Path dist/* `
-            -DestinationPath SPIDE-Studio-Windows.zip `
-            -Force
+            -DestinationPath SPIDE-Studio-Windows.zip -Force
 
-      - name: Upload Artifact
+      - name: Upload SPIDE Studio
         uses: actions/upload-artifact@v4
         with:
           name: SPIDE-Studio-Windows
