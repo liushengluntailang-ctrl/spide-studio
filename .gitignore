@@ -4,3 +4,8 @@ lib/
 *.user
 .DS_Store
 *.autosave
+build/
+build-*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
